@@ -22,6 +22,7 @@ public:
 	void push(const Item& item);
 	Item peekTop()  const;
 	Item pop();
+	Stack<Item>& operator=(const Stack<Item>& original);
 private:
 	struct Node {
 		Node(const Item& it, Node* next) { myItem = it; myNext = next; }
@@ -30,6 +31,9 @@ private:
 		Node* myNext;
 	};
 	Node* myTopPtr;
+
+	void makeCopyOf(const Stack<Item>& original);
+
 	friend class StackTester;
 };
 
@@ -39,7 +43,7 @@ Stack<Item>::Stack() {
 }
 
 template<class Item>
-Stack<Item>::Stack(const Stack<Item>& original) {
+void Stack<Item>::makeCopyOf(const Stack<Item>& original) {
 	// pointer to the node we're copying
 	Node* oPtr = original.myTopPtr;
 	// pointer to my current node
@@ -59,6 +63,11 @@ Stack<Item>::Stack(const Stack<Item>& original) {
 		mPtr = mPtr->myNext;
 		oPtr = oPtr->myNext;
 	}
+}
+
+template<class Item>
+Stack<Item>::Stack(const Stack<Item>& original) {
+	makeCopyOf(original);
 }
 
 template<class Item>
@@ -88,6 +97,15 @@ Item Stack<Item>::pop() {
 	newPtr->myNext = NULL;
 	delete newPtr;
 	return it;
+}
+
+template<class Item>
+Stack<Item>& Stack<Item>::operator =(const Stack<Item>& original) {
+	if (this!= &original) {//self assignment safeguard
+		delete myTopPtr;//only works because of how we made ~Node();
+		makeCopyOf(original);
+	}
+	return *this;
 }
 
 #endif /* STACK_H_ */

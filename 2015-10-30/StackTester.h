@@ -13,7 +13,7 @@ public:
 	void runTests();
 	void testConstructors();
 	void testPushPopEtc();
-//	void testAssignment();
+	void testAssignment();
 };
 
 #endif /* STACKTESTER_H_ */
