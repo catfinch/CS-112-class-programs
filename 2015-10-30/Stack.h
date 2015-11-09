@@ -50,10 +50,10 @@ void Stack<Item>::makeCopyOf(const Stack<Item>& original) {
 	Node* mPtr = NULL;
 	// cover empty case
 	myTopPtr = NULL;
-	// copy top node, if there is one
+	// if there is a top node, copy it
 	if (oPtr) {
 		myTopPtr = new Node(oPtr->myItem, NULL);
-		// prepare ptrs to copy the remaining nodes
+		// prep ptrs to copy any remaining nodes
 		oPtr = oPtr->myNext;
 		mPtr = myTopPtr;
 	}
@@ -100,9 +100,9 @@ Item Stack<Item>::pop() {
 }
 
 template<class Item>
-Stack<Item>& Stack<Item>::operator =(const Stack<Item>& original) {
-	if (this!= &original) {//self assignment safeguard
-		delete myTopPtr;//only works because of how we made ~Node();
+Stack<Item>& Stack<Item>::operator=(const Stack<Item>& original) {
+	if (this != &original) {
+		delete myTopPtr;
 		makeCopyOf(original);
 	}
 	return *this;
