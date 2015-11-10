@@ -13,13 +13,24 @@ typedef double Item;
 class Queue {
 public:
 	Queue();
-	unsigned getSize() const { return mySize; }
-	bool isEmpty() const     { return mySize == 0; }
-	bool isFull() const      { return mySize == CAPACITY; }
- private:
-	enum { CAPACITY = 5 };
+	unsigned getSize() const {
+		return mySize;
+	}
+	bool isEmpty() const {
+		return mySize == 0;
+	}
+	bool isFull() const {
+		return mySize == CAPACITY;
+	}
+	void append(const Item& item);
+	Item peekFirst() const;
+	Item peekLast() const;
+private:
+	enum {
+		CAPACITY = 5
+	};
 	unsigned mySize, myFirst, myLast;
-	Item     myArray[CAPACITY];
+	Item myArray[CAPACITY];
 };
 
 #endif /* QUEUE_H_ */

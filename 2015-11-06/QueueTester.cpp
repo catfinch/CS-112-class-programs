@@ -21,13 +21,14 @@ void QueueTester::runTests() {
 void QueueTester::testAppend() {
 	cout << "- append, getFirst, getLast... " << flush;
 	Queue q0;
-//	q0.append(11);
-//	assert( q0.peekFirst() == 11 );
-//	assert( q0.peekLast() == 11 );
-//	assert( q0.getSize() == 1 );
-//	assert( !q0.isEmpty() );
-//	assert( !q0.isFull() );
+	q0.append(11);
+	assert( q0.peekFirst() == 11 );
+	assert( q0.peekLast() == 11 );
+	assert( q0.getSize() == 1 );
+	assert( !q0.isEmpty() );
+	assert( !q0.isFull() );
 	cout << " 0 " << flush;
+
 	cout << " Passed!" << endl;
 }
 
